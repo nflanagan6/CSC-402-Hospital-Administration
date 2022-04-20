@@ -1,4 +1,4 @@
-# Install script for directory: /Users/nateflanagan/Library/Mobile Documents/com~apple~CloudDocs/Documents/NKU/NKU Spring 2022/CSC 402/Hospital Administration Assignment
+# Install script for directory: /Users/nateflanagan/Library/Mobile Documents/com~apple~CloudDocs/Documents/NKU/NKU Spring 2022/CSC 402/Hospital Administration Assignment/Hospital Administration Assignment
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/nateflanagan/Library/Mobile Documents/com~apple~CloudDocs/Documents/NKU/NKU Spring 2022/CSC 402/Hospital Administration Assignment/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/nateflanagan/Library/Mobile Documents/com~apple~CloudDocs/Documents/NKU/NKU Spring 2022/CSC 402/Hospital Administration Assignment/Hospital Administration Assignment/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
