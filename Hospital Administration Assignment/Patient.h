@@ -1,10 +1,10 @@
 
 #include <string>
 #include <vector>
+#include "Logger.h"
 
 #ifndef HOSPITAL_ADMINISTRATION_ASSIGNMENT_PATIENT_H
 #define HOSPITAL_ADMINISTRATION_ASSIGNMENT_PATIENT_H
-
 
 class Patient {
 
