@@ -24,15 +24,15 @@ public:
             std::vector<std::string>& ailments, std::string doctor, int priority, bool treated);
     Patient (std::string last_name, std::vector<std::string>& ailments, std::string doctor, int priority, bool treated);
 
-    [[nodiscard]] std::vector<std::string>& get_ailments();     // TODO - is just a vector of std::string find since
-    [[nodiscard]] std::string get_doctor();                     // it's not huge, or should it be std::string*?
-    [[nodiscard]] std::string get_first_name();
-    [[nodiscard]] std::string get_full_name();
-    [[nodiscard]] std::string get_last_name();
-    [[nodiscard]] std::string get_middle_name();
-    [[nodiscard]] std::string get_name_suffix();
-    [[nodiscard]] int get_priority();
-    [[nodiscard]] bool isTreated();
+    [[nodiscard]] const std::vector<std::string>& get_ailments() const;     // TODO - is just a vector of std::string find since
+    [[nodiscard]] std::string get_doctor() const;                     // it's not huge, or should it be std::string*?
+    [[nodiscard]] std::string get_first_name() const;
+    [[nodiscard]] std::string get_full_name() const;
+    [[nodiscard]] std::string get_last_name() const;
+    [[nodiscard]] std::string get_middle_name() const;
+    [[nodiscard]] std::string get_name_suffix() const;
+    [[nodiscard]] int get_priority() const;
+    [[nodiscard]] bool isTreated() const;
 
     void set_ailments(std::vector<std::string>& ailments);
     void set_doctor(std::string doctor);
@@ -43,6 +43,10 @@ public:
     void set_priority(int priority);
     void set_treated(bool isTreated);
 
+    bool operator<(const Patient &rhs) const;
+    bool operator>(const Patient &rhs) const;
+    bool operator<=(const Patient &rhs) const;
+    bool operator>=(const Patient &rhs) const;
 };
 
 #endif //HOSPITAL_ADMINISTRATION_ASSIGNMENT_PATIENT_H

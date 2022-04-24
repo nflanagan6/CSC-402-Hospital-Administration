@@ -24,10 +24,10 @@ Patient::Patient(std::string last_name, std::vector<std::string>& ailments, std:
                 + " to the system with priority " + std::to_string(priority));
 }
 
-std::vector<std::string>& Patient::get_ailments() { return ailments; }
-std::string Patient::get_doctor() { return doctor; }
-std::string Patient::get_first_name() { return first_name; }
-std::string Patient::get_full_name() {
+const std::vector<std::string>& Patient::get_ailments() const { return ailments; }
+std::string Patient::get_doctor() const { return doctor; }
+std::string Patient::get_first_name() const { return first_name; }
+std::string Patient::get_full_name() const {
 
     std::string full_name = "";
 
@@ -45,11 +45,11 @@ std::string Patient::get_full_name() {
 
     return full_name;
 }
-std::string Patient::get_last_name() { return last_name; }
-std::string Patient::get_middle_name() { return middle_name; }
-std::string Patient::get_name_suffix() { return name_suffix; }
-int Patient::get_priority() { return priority; }
-bool Patient::isTreated() { return treated; }
+std::string Patient::get_last_name() const { return last_name; }
+std::string Patient::get_middle_name() const { return middle_name; }
+std::string Patient::get_name_suffix() const { return name_suffix; }
+int Patient::get_priority() const { return priority; }
+bool Patient::isTreated() const { return treated; }
 
 void Patient::set_ailments(std::vector<std::string> &ailments) {
 
@@ -116,4 +116,21 @@ void Patient::set_treated(bool isTreated) {
         Logger::get_Logger().log("Updated patient " + get_full_name()
         + "'s status from treated to untreated");
     this->treated = isTreated;
+}
+
+bool Patient::operator<(const Patient& rhs) const {
+
+    return this->priority > rhs.priority;
+}
+bool Patient::operator>(const Patient& rhs) const {
+
+    return this->priority < rhs.priority;
+}
+bool Patient::operator<=(const Patient& rhs) const {
+
+    return !(*this > rhs);
+}
+bool Patient::operator>=(const Patient& rhs) const {
+
+    return !(*this < rhs);
 }
