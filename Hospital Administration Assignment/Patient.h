@@ -27,6 +27,7 @@ public:
     [[nodiscard]] std::vector<std::string>& get_ailments();     // TODO - is just a vector of std::string find since
     [[nodiscard]] std::string get_doctor();                     // it's not huge, or should it be std::string*?
     [[nodiscard]] std::string get_first_name();
+    [[nodiscard]] std::string get_full_name();
     [[nodiscard]] std::string get_last_name();
     [[nodiscard]] std::string get_middle_name();
     [[nodiscard]] std::string get_name_suffix();
