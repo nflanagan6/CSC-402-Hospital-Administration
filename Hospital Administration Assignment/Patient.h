@@ -20,9 +20,10 @@ private:
     bool treated;
 
 public:
-    Patient (std::string first_name, std::string last_name, std::string middle_name, std::string name_suffix,
+    Patient (std::string first_name, std::string middle_name, std::string last_name, std::string name_suffix,
             std::vector<std::string>& ailments, std::string doctor, int priority, bool treated);
     Patient (std::string last_name, std::vector<std::string>& ailments, std::string doctor, int priority, bool treated);
+    Patient();
 
     [[nodiscard]] const std::vector<std::string>& get_ailments() const;     // TODO - is just a vector of std::string find since
     [[nodiscard]] std::string get_doctor() const;                     // it's not huge, or should it be std::string*?
@@ -32,6 +33,7 @@ public:
     [[nodiscard]] std::string get_middle_name() const;
     [[nodiscard]] std::string get_name_suffix() const;
     [[nodiscard]] int get_priority() const;
+    [[nodiscard]] std::string get_report() const;
     [[nodiscard]] bool isTreated() const;
 
     void set_ailments(std::vector<std::string>& ailments);

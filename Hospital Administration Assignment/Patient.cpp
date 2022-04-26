@@ -1,16 +1,16 @@
 
 #include "Patient.h"
 
-Patient::Patient(std::string first_name, std::string last_name, std::string middle_name, std::string name_suffix,
+Patient::Patient(std::string first_name, std::string middle_name, std::string last_name, std::string name_suffix,
                  std::vector<std::string>& ailments, std::string doctor, int priority, bool treated)
-                 : first_name(first_name), last_name(last_name), middle_name(middle_name), name_suffix(name_suffix),
+                 : first_name(first_name), middle_name(middle_name), last_name(last_name), name_suffix(name_suffix),
                  doctor(doctor), priority(priority), treated(treated) {
 
                     this->ailments = std::vector<std::string>();
                     for (std::string ailment : ailments)
                         this->ailments.push_back(ailment);
 
-                    Logger::get_Logger().log("Added new patient " + get_full_name()
+                    Logger::get_Logger().log("Created new patient " + get_full_name()
                     + " to the system with priority " + std::to_string(priority));
                  }
 Patient::Patient(std::string last_name, std::vector<std::string>& ailments, std::string doctor, int priority,
@@ -20,9 +20,12 @@ Patient::Patient(std::string last_name, std::vector<std::string>& ailments, std:
                 for (std::string ailment : ailments)
                     this->ailments.push_back(ailment);
 
-                Logger::get_Logger().log("Added new patient Mr./Ms./Mrs. " + last_name
+                Logger::get_Logger().log("Created new patient Mr./Ms./Mrs. " + last_name
                 + " to the system with priority " + std::to_string(priority));
 }
+
+Patient::Patient() : ailments(std::vector<std::string>()), doctor("Unassigned"), priority(50),
+treated (false) {}
 
 const std::vector<std::string>& Patient::get_ailments() const { return ailments; }
 std::string Patient::get_doctor() const { return doctor; }
@@ -128,9 +131,9 @@ bool Patient::operator>(const Patient& rhs) const {
 }
 bool Patient::operator<=(const Patient& rhs) const {
 
-    return !(*this > rhs);
+    return !(*this < rhs);
 }
 bool Patient::operator>=(const Patient& rhs) const {
 
-    return !(*this < rhs);
+    return !(*this > rhs);
 }

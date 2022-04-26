@@ -1,7 +1,7 @@
 
 #include <iostream>
 #include "Patient.h"
-
+#include "hospital_patient_queue.h"
 
 int main() {
 
@@ -25,6 +25,33 @@ int main() {
     testing_patient.set_treated(true);
     testing_patient.set_treated(false);
 
+    std::vector<std::string> testing_ailments_2 = std::vector<std::string>();
+    testing_ailments_2.push_back("The Plague");
+    testing_ailments_2.push_back("Hearing voices");
+
+
+    Patient testing_patient_2 = Patient("James", "Holden", "", "",
+                                        testing_ailments_2, "AAA", 4, false);
+    Patient testing_patient_3 = Patient("Bob", "Roberts", "Roberto", "III",
+                                        testing_ailments, "AAAAAA", 7, false);
+
+    hospital_patient_queue queue = hospital_patient_queue();
+    queue.add(testing_patient);
+    queue.add(testing_patient_2);
+    queue.add(testing_patient_3);
+
+    testing_patient.set_priority(100);
+    testing_patient_2.set_priority(1);
+    testing_patient_3.set_priority(35);
+
+    for (int i = 1; i <= 3; i++) {
+        std::cout << "Next patient to be treated: " << queue.get_next().get_full_name() << std::endl;
+        queue.treat_next();
+    }
+
+
+    queue.add_from_file("patients.txt");
+    queue.treat_all();
 
 }
 
