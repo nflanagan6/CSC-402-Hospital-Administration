@@ -1,12 +1,12 @@
 
 #include <string>
 #include <vector>
-#include "Logger.h"
+#include "logger.h"
 
 #ifndef HOSPITAL_ADMINISTRATION_ASSIGNMENT_PATIENT_H
 #define HOSPITAL_ADMINISTRATION_ASSIGNMENT_PATIENT_H
 
-class Patient {
+class patient {
 
 private:
     std::string first_name;
@@ -20,10 +20,10 @@ private:
     bool treated;
 
 public:
-    Patient (std::string first_name, std::string middle_name, std::string last_name, std::string name_suffix,
-            std::vector<std::string>& ailments, std::string doctor, int priority, bool treated);
-    Patient (std::string last_name, std::vector<std::string>& ailments, std::string doctor, int priority, bool treated);
-    Patient();
+    patient (std::string first_name, std::string middle_name, std::string last_name, std::string name_suffix,
+             std::vector<std::string>& ailments, std::string doctor, int priority, bool treated);
+    patient (std::string last_name, std::vector<std::string>& ailments, std::string doctor, int priority, bool treated);
+    patient();
 
     [[nodiscard]] const std::vector<std::string>& get_ailments() const;     // TODO - is just a vector of std::string find since
     [[nodiscard]] std::string get_doctor() const;                     // it's not huge, or should it be std::string*?
@@ -45,10 +45,10 @@ public:
     void set_priority(int priority);
     void set_treated(bool isTreated);
 
-    bool operator<(const Patient &rhs) const;
-    bool operator>(const Patient &rhs) const;
-    bool operator<=(const Patient &rhs) const;
-    bool operator>=(const Patient &rhs) const;
+    bool operator<(const patient &rhs) const;
+    bool operator>(const patient &rhs) const;
+    bool operator<=(const patient &rhs) const;
+    bool operator>=(const patient &rhs) const;
 };
 
 #endif //HOSPITAL_ADMINISTRATION_ASSIGNMENT_PATIENT_H

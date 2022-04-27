@@ -8,20 +8,20 @@
 #ifndef HOSPITAL_ADMINISTRATION_ASSIGNMENT_LOGGER_H
 #define HOSPITAL_ADMINISTRATION_ASSIGNMENT_LOGGER_H
 
-class Logger {
+class logger {
 
 private:
 
-    Logger();
-    Logger(const Logger & rhs);
-    const Logger& operator=(const Logger & rhs);
+    logger();
+    logger(const logger & rhs);
+    const logger& operator=(const logger & rhs);
 
     bool debug_mode = false;
     std::ofstream log_file;
 
 public:
 
-    [[nodiscard]] static Logger& get_Logger();
+    [[nodiscard]] static logger& get_logger();
     [[nodiscard]] bool in_debug_mode() const;
     void log(std::string message_to_log);
     void set_debug_mode(bool debug_mode);

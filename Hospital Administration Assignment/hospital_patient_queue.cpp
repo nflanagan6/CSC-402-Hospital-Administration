@@ -2,31 +2,31 @@
 #include "hospital_patient_queue.h"
 
 hospital_patient_queue::hospital_patient_queue()
-: treated_patients(std::vector<Patient>()),
-untreated_patients(std::priority_queue<Patient, std::vector<Patient>, std::less<>>()) {}
+: treated_patients(std::vector<patient>()),
+untreated_patients(std::priority_queue<patient, std::vector<patient>, std::less<>>()) {}
 
 
-const Patient& hospital_patient_queue::get_next() const {
+const patient& hospital_patient_queue::get_next() const {
 
     return untreated_patients.top();
 }
-void hospital_patient_queue::add(Patient& patient) {
+void hospital_patient_queue::add(patient& added_patient) {
 
-    Patient new_patient (patient);
+    patient new_patient (added_patient);
 
     if (!new_patient.isTreated()) {
         untreated_patients.push(new_patient);
-        Logger::get_Logger().log("Patient " + new_patient.get_full_name() + " added to untreated "
-                                                                            "patient queue");
+        logger::get_logger().log("patient " + new_patient.get_full_name() + " added to untreated "
+                                                                            "patient queue.");
     }
     else {
         treated_patients.push_back(new_patient);
-        Logger::get_Logger().log("Patient " + new_patient.get_full_name() + " added to list of treated patients");
+        logger::get_logger().log("patient " + new_patient.get_full_name() + " added to list of treated patients.");
     }
 }
 void hospital_patient_queue::add_from_file(std::string source_file_name) {
 
-    Logger::get_Logger().log("Adding patients from file " + source_file_name);
+    logger::get_logger().log("Adding patients from file " + source_file_name + ".");
 
     std::ifstream source_file (source_file_name);
 
@@ -86,7 +86,7 @@ void hospital_patient_queue::add_from_file(std::string source_file_name) {
 
                 else {
                     single_patient_input_complete = true;
-                    Patient new_patient = Patient(first_name, middle_name, last_name, name_suffix, ailments,
+                    patient new_patient = patient(first_name, middle_name, last_name, name_suffix, ailments,
                                                   doctor, priority, treated);
                     add(new_patient);
                     number_of_patients_added++;
@@ -99,30 +99,34 @@ void hospital_patient_queue::add_from_file(std::string source_file_name) {
 
             else {
                 file_complete = true;
-                Logger::get_Logger().log("Finished reading file " + source_file_name + ". " +
-                std::to_string(number_of_patients_added) + " patients were added.");
+                logger::get_logger().log("Finished reading file " + source_file_name + ". " +
+                                         std::to_string(number_of_patients_added) + " patients were added.");
             }
         }
     }
 
     else
-        Logger::get_Logger().log("File " + source_file_name + " could not be read");
+        logger::get_logger().log("File " + source_file_name + " could not be read.");
 
 }
 void hospital_patient_queue::treat_all() {
 
-    Logger::get_Logger().log("Treating all patients in untreated patient queue");
-    for (int i = 0; i <= untreated_patients.size(); i++) {
+    logger::get_logger().log("Treating all patients in untreated patient queue.");
+    int patients_treated = 0;
+
+    while (!untreated_patients.empty()) {
         treat_next();
+        patients_treated++;
     }
-    Logger::get_Logger().log("Finished treating all patients in untreated patient queue");
+    logger::get_logger().log("Finished treating all patients in untreated patient queue. "
+                             + std::to_string(patients_treated) + " patients were treated.");
 }
 void hospital_patient_queue::treat_next() {
 
-    Patient treated_patient = untreated_patients.top();
+    patient treated_patient = untreated_patients.top();
     untreated_patients.pop();
-    Logger::get_Logger().log("Treating next patient " + treated_patient.get_full_name());
+    logger::get_logger().log("Treating next patient " + treated_patient.get_full_name() + ".");
     treated_patient.set_treated(true);
     treated_patients.push_back(treated_patient);
-    Logger::get_Logger().log("Patient " + treated_patient.get_full_name() + " added to list of treated patients");
+    logger::get_logger().log("patient " + treated_patient.get_full_name() + " added to list of treated patients.");
 }

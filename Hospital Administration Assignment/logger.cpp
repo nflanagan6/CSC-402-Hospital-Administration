@@ -1,20 +1,20 @@
 
-#include "Logger.h"
+#include "logger.h"
 
-Logger& Logger::get_Logger() {
+logger& logger::get_logger() {
 
-    static Logger logger;
+    static logger logger;
     return logger;
 }
 
-Logger::Logger() = default;
+logger::logger() = default;
 
-bool Logger::in_debug_mode() const {
+bool logger::in_debug_mode() const {
 
     return debug_mode;
 }
 
-void Logger::log(std::string message_to_log) {
+void logger::log(std::string message_to_log) {
 
     auto now = std::chrono::system_clock::now();
     std::time_t log_time_t = std::chrono::system_clock::to_time_t(now);
@@ -44,7 +44,7 @@ void Logger::log(std::string message_to_log) {
     }
 }
 
-void Logger::set_debug_mode(bool debug_mode) {
+void logger::set_debug_mode(bool debug_mode) {
 
     if (this->debug_mode == false && debug_mode == true) {
 
@@ -63,7 +63,7 @@ void Logger::set_debug_mode(bool debug_mode) {
     }
 }
 
-void Logger::set_log_file(std::string file_name) {
+void logger::set_log_file(std::string file_name) {
 
     std::string full_file_name = "/Users/nateflanagan/Library/Mobile Documents/"
                                                          "com~apple~CloudDocs/Documents/NKU/NKU Spring 2022/CSC 402/"
@@ -76,7 +76,7 @@ void Logger::set_log_file(std::string file_name) {
     log_file << "Time" << ";" << "Operation" << "\n";
 }
 
-void Logger::set_log_file() {
+void logger::set_log_file() {
 
     auto now = std::chrono::system_clock::now();
     std::time_t log_time = std::chrono::system_clock::to_time_t(now);
